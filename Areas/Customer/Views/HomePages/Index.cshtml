@@ -1,0 +1,183 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@model doan_webfix.Models.ViewModel.HomePageViewModel
+@{ ViewData["Title"] = "Index";
+    Layout = "~/Areas/Customer/Views/Shared/_LayoutHomePage.cshtml";
+}
+@section Slider
+{
+    <div class="site-blocks-cover" data-aos="fade">
+        <div class="order-1 align-self-end">
+            <img src="~/images/rio-coffee-restaurant-799869.jpg" alt="Image" class="img-fluid">
+        </div>
+
+    </div>
+}
+<div class="site-section">
+    <div class="container">
+        <div class="title-section mb-5">
+            <h2 class="text-uppercase"><span class="d-block">Discover</span>Our Restaurant</h2>
+        </div>
+        <div class="row align-items-stretch">
+            <div class="col-lg-8">
+                <div class="sm-height full-height bg-gray">
+                    <a href="#" class="product-category">Pizza <span></span></a>
+                    <a href=" @Url.Action("Index","Shop",new { searchName="",searchType="Pizza"})"><img src="~/images/baking-cheese-cooking-crust-315755.jpg" alt="Image" class="img-fluid"></a>
+                </div>
+            </div>
+            <div class="col-lg-4" style="position: relative">
+                <div class="sm-height bg-gray mb-4">
+                    <a href="#" class="product-category _1">Desserts <span></span></a>
+                    <a href=" @Url.Action("Index","Shop",new { searchName="",searchType="Dessert"})"><img src="~/images/shallow-focus-of-white-icing-covered-cake-on-white-ceramic-1721934.jpg" alt="Image" class="img-fluid"></a>
+                </div>
+
+                <div class="sm-height bg-gray">
+                    <a href="#" class="product-category _2">Healthy Foods <span></span></a>
+                    <a href=" @Url.Action("Index","Shop",new { searchName="",searchType="Healthy Food"})">
+                        <img src="~/images/vegetable-lot-1580466.jpg" alt="Image" class="img-fluid">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="site-section">
+    <div class="container">
+        <div class="title-section mb-5">
+            <h2 class="text-uppercase"><span class="d-block">Discover</span>Our New Product</h2>
+        </div>
+        <div class="row isotope-grid" style="margin-left:50px;margin-right:50px;">
+            @foreach (var product in Model.newProduct)
+            {
+<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item">
+    <!-- Block2 -->
+    <div class="block2">
+        <div class="block2-pic hov-img0">
+            <img src="@product.Image" alt="IMG-PRODUCT" class="picture" style="width:200px;height:200px;">
+
+            <a asp-action="Details" asp-controller="Shop" asp-area="Customer" asp-route-id="@product.ProductId" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                Quick View
+            </a>
+        </div>
+
+        <div class="block2-txt flex-w flex-t p-t-14">
+            <div class="block2-txt-child1 flex-col-l ">
+                <a href="#" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6" style="font-size:20px;">
+                    @product.ProductName
+                </a>
+                @if (product.newPrice != 0)
+                {
+<span class="stext-105 cl3" style="font-weight:normal;color:dimgray;font-size:20px;">
+    <del style="padding-right:100px;">@string.Format("{0:c}", product.Price)</del><strong>@string.Format("{0:c}", product.newPrice)</strong>
+
+</span> }
+                else
+                {
+<span class="stext-105 cl3" style="font-weight:bold;color:black;font-size:20px; text-align:right;">
+    @string.Format("{0:c}", product.Price)
+</span>}
+
+                <div class="star-rating">
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>            }
+        </div>
+    </div>
+</div>
+
+<div class="site-section">
+    <div class="container">
+        <div class="title-section mb-5">
+            <h2 class="text-uppercase"><span class="d-block">Discover</span>Our Sale Product</h2>
+        </div>
+        <div class="row isotope-grid" style="margin-left:50px;margin-right:50px;">
+            @foreach (var product in Model.saleProduct)
+            {
+<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item">
+    <!-- Block2 -->
+    <div class="block2">
+        <div class="block2-pic hov-img0">
+            <img src="@product.Image" alt="IMG-PRODUCT" class="picture" style="width:200px;height:200px;">
+
+            <a asp-action="Details" asp-controller="Shop" asp-area="Customer" asp-route-id="@product.ProductId" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                Quick View
+            </a>
+        </div>
+
+        <div class="block2-txt flex-w flex-t p-t-14">
+            <div class="block2-txt-child1 flex-col-l ">
+                <a href="#" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6" style="font-size:20px;">
+                    @product.ProductName
+                </a>
+                @if (product.newPrice != 0)
+                {
+<span class="stext-105 cl3" style="font-weight:normal;color:dimgray;font-size:20px;">
+    <del style="padding-right:100px;">@string.Format("{0:c}", product.Price)</del><strong>@string.Format("{0:c}", product.newPrice)</strong>
+
+</span> }
+                else
+                {
+<span class="stext-105 cl3" style="font-weight:bold;color:black;font-size:20px; text-align:right;">
+    @string.Format("{0:c}", product.Price)
+</span>}
+
+                <div class="star-rating">
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>            }
+        </div>
+    </div>
+</div>
+
+<style>
+    a.product-category._1 {
+        position: absolute;
+        top: 515px;
+        color: white;
+        font-size: 24px;
+        right: 93px;
+    }
+
+    a.product-category._2 {
+        position: absolute;
+        bottom: 32px;
+        color: white;
+        font-size: 24px;
+        right: 69px;
+    }
+
+    .full-height {
+        position: relative;
+    }
+
+    a.product-category {
+        position: absolute;
+        bottom: 0;
+        color: white;
+        font-size: 31px;
+        right: 18px;
+    }
+</style>
+
+
+
